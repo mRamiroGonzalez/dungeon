@@ -32,12 +32,11 @@ function horizontal_controls(p)
     p.dx = -p.h_speed
     p.mvt_h = -1
     p.facing = 0
-  elseif(btn(1)) then
+  end
+  if (btn(1)) then
     p.dx = p.h_speed
     p.mvt_h = 1
     p.facing = 1
-  else
-    p.walk.f = p.walk.fix
   end
 
   h_col = box_collide_h(p)
@@ -50,7 +49,15 @@ function horizontal_controls(p)
   if h_col then
     p.walk.f = p.walk.fix
   else
-    p.x += p.dx
-    anim(p.walk, 0.35)
+    if no_horizontal_input() then
+      p.walk.f = p.walk.fix
+    else
+      p.x += p.dx
+      anim(p.walk, 0.35)
+    end
   end
+end
+
+function no_horizontal_input()
+  return not (btn(0) or btn(1))
 end

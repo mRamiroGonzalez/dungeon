@@ -120,12 +120,11 @@ if(btn(0)) then
 p.dx = -p.h_speed
 p.mvt_h = -1
 p.facing = 0
-elseif(btn(1)) then
+end
+if (btn(1)) then
 p.dx = p.h_speed
 p.mvt_h = 1
 p.facing = 1
-else
-p.walk.f = p.walk.fix
 end
 
 h_col = box_collide_h(p)
@@ -138,9 +137,17 @@ end
 if h_col then
 p.walk.f = p.walk.fix
 else
+if no_horizontal_input() then
+p.walk.f = p.walk.fix
+else
 p.x += p.dx
-anim(p.walk, 0.25)
+anim(p.walk, 0.35)
 end
+end
+end
+
+function no_horizontal_input()
+return not (btn(0) or btn(1))
 end
 function init_player()
 p = {
@@ -151,7 +158,7 @@ mvt_h = 0,
 mvt_v = 0,
 facing = 1,
 v_speed = 4,
-h_speed = 2,
+h_speed = 1,
 jumping = false,
 jump_initial_speed = -7,
 gravity = 1,
@@ -188,6 +195,7 @@ return get_block_in_front(e, 0)
 end
 
 function print_debug()
+print(p.walk.f,0,0,0)
 end
 
 function sp_to_rect(e)
@@ -529,4 +537,10 @@ __music__
 00 41424344
 00 41424344
 00 41424344
+
+
+
+
+
+
 

@@ -11,7 +11,7 @@ function init_player()
     jumping = false,
     jump_initial_speed = -7,
     gravity = 1,
-    walk={f=48,st=48,sz=52, fix=48},
+    walk={f=37,st=37,sz=39, fix=40},
     --walk={f=16,st=16,sz=21, fix=16},
   }
 end
