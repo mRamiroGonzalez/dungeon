@@ -1,5 +1,6 @@
 
 function print_debug()
+  -- print(bad2.facing, 5,5,0)
 end
 
 function sp_to_rect(e)

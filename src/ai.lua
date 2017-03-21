@@ -1,10 +1,44 @@
 
+function walk_endless(e)
+  walk_x(e)
+  move_y(e)
+end
+
+function walk_x(e)
+  e.dx = 0
+  if e.facing == 1 then
+    e.dx = e.h_speed
+    e.mvt_h = 1
+  else
+    e.dx = -e.h_speed
+    e.mvt_h = -1
+  end
+
+  h_col = box_collide_h(e)
+  
+  if (e.x % 8 != 0) and h_col then
+    if(e.mvt_h == 1) e.x += 8 - (e.x % 8)
+    if(e.mvt_h == -1) e.x -= (e.x % 8)
+  end
+
+  if h_col then
+    if(e.facing == 1) then
+      e.facing = 0
+    elseif(e.facing == 0) then
+      e.facing = 1
+    end
+  else
+    e.x += e.dx
+    anim(e.walk, 0.2)
+  end
+end
+
 function follow_player(e,p)
-  move_x(e,p)
+  follow_x(e,p)
   move_y(e,p)
 end
 
-function move_x(e, p)
+function follow_x(e, p)
   e.dx = 0
 
   if (e.x < p.x) then
@@ -35,7 +69,7 @@ function move_x(e, p)
   end
 end
 
-function move_y(e, p)
+function move_y(e)
   v_col = box_collide_v(e)
 
   if (e.y % 8 != 0) and v_col then

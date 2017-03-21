@@ -2,12 +2,46 @@ pico-8 cartridge // http://www.pico-8.com
 version 8
 __lua__
 
+function walk_endless(e)
+walk_x(e)
+move_y(e)
+end
+
+function walk_x(e)
+e.dx = 0
+if e.facing == 1 then
+e.dx = e.h_speed
+e.mvt_h = 1
+else
+e.dx = -e.h_speed
+e.mvt_h = -1
+end
+
+h_col = box_collide_h(e)
+
+if (e.x % 8 != 0) and h_col then
+if(e.mvt_h == 1) e.x += 8 - (e.x % 8)
+if(e.mvt_h == -1) e.x -= (e.x % 8)
+end
+
+if h_col then
+if(e.facing == 1) then
+e.facing = 0
+elseif(e.facing == 0) then
+e.facing = 1
+end
+else
+e.x += e.dx
+anim(e.walk, 0.2)
+end
+end
+
 function follow_player(e,p)
-move_x(e,p)
+follow_x(e,p)
 move_y(e,p)
 end
 
-function move_x(e, p)
+function follow_x(e, p)
 e.dx = 0
 
 if (e.x < p.x) then
@@ -38,7 +72,7 @@ anim(e.walk, 0.35)
 end
 end
 
-function move_y(e, p)
+function move_y(e)
 v_col = box_collide_v(e)
 
 if (e.y % 8 != 0) and v_col then
@@ -270,6 +304,7 @@ end
 function _init()
 p = init_entity(76, 64, 3, 16, 6)
 bad = init_entity(30, 30, 1, 48, 5)
+bad2 = init_entity(30, 64, 1, 32, 4)
 end
 
 function _draw()
@@ -277,14 +312,18 @@ cls()
 map(0,0,0,0,16,16)
 spr(p.walk.f, p.x, p.y, 1, 1, (p.facing == 0))
 spr(bad.walk.f, bad.x, bad.y, 1, 1, (bad.facing == 0))
+spr(bad2.walk.f, bad2.x, bad2.y, 1, 1, (bad2.facing == 0))
 print_debug()
 end
 
 function _update()
 update_gravity(p)
 update_gravity(bad)
+update_gravity(bad2)
+
 update_from_controls(p)
 follow_player(bad, p)
+walk_endless(bad2)
 end
 
 
@@ -595,6 +634,26 @@ __music__
 00 41424344
 00 41424344
 00 41424344
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
