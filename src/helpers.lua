@@ -1,6 +1,5 @@
 
 function print_debug()
-  print(p.walk.f,0,0,0)
 end
 
 function sp_to_rect(e)

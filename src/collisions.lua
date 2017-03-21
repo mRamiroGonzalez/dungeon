@@ -42,8 +42,8 @@ end
 
 -- blocs to check for a collision detection
 function block(px, py)
-  sprite = mget(flr((px)/8),flr(py/8))
-  b = {
+  local sprite = mget(flr((px)/8),flr(py/8))
+  return {
     x = flr(px / 8) * 8,
     y = flr(py / 8) * 8,
     w = 8,
@@ -51,7 +51,6 @@ function block(px, py)
     sp = sprite,
     solid = fget(sprite, 0)
   }
-  return b
 end
 
 function blocks_front(e, blocks_to_check)
