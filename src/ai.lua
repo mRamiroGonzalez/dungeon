@@ -29,7 +29,7 @@ function walk_x(e)
     end
   else
     e.x += e.dx
-    anim(e.walk, 0.2)
+    anim(e.base_anim, 0.2)
   end
 end
 
@@ -50,7 +50,7 @@ function follow_x(e, p)
     e.mvt_h = -1
     e.facing = 0
   else
-   e.walk.f = e.walk.fix
+   e.base_anim.f = e.base_anim.fix
    e.dx = 0
   end
 
@@ -62,10 +62,10 @@ function follow_x(e, p)
   end
 
   if h_col then
-    e.walk.f = e.walk.fix
+    e.base_anim.f = e.base_anim.fix
   else
     e.x += e.dx
-    anim(e.walk, 0.35)
+    anim(e.base_anim, 0.35)
   end
 end
 

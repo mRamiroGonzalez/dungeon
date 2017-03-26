@@ -1,7 +1,7 @@
 
 function print_debug()
-  print('mem:'..stat(0), 0, 0, 8)
-  print('cpu:'..stat(1), 0, 8, 8)
+  print('cpu:'..stat(1), 0, 1, 0)
+  print(count(entities), 0, 9, 0)
 end
 
 function sp_to_rect(e)

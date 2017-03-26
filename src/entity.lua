@@ -1,6 +1,21 @@
-function init_entity(start_x, start_y, speed, start_sprite, length_sprites)
+function load_entities(loaded_map, entities)
+  for xi = loaded_map.x1, loaded_map.x2, 1 do
+    for yi = loaded_map.y1, loaded_map.y2, 1 do
+      if(mget(xi, yi) == 128) then
+        add(entities, init_entity(xi*8, yi*8, 1, 48, 4,'bad'))
+        mset(xi, yi, 80)
+      elseif(mget(xi, yi) == 129) then
+       -- mset(x, y, 2)
+      end
+    end
+  end
+end
+
+function init_entity(start_x, start_y, speed, start_sprite, length_sprites, t)
   return {
-    x = start_x, y = start_y,
+    entity_type = t,
+    x = start_x, 
+    y = start_y,
     dx = 0, dy = 0,
     w = 8, h = 8,
     mvt_h = 0,
@@ -11,23 +26,13 @@ function init_entity(start_x, start_y, speed, start_sprite, length_sprites)
     jumping = false,
     jump_initial_speed = -7,
     gravity = 1,
-    walk={f=start_sprite, st=start_sprite, sz=start_sprite+length_sprites, fix=start_sprite}
+    base_anim={f=start_sprite, st=start_sprite, sz=start_sprite+length_sprites, fix=start_sprite}
   }
 end
 
-function init_torch(x, y, start_sprite, length_sprites)
-  return{
-    x = x*8,
-    y = y*8,
-    burns={f=start_sprite, st=start_sprite, sz=start_sprite+length_sprites}
-  }
-end
-
-function update_anim_torches(torches)
-  for t in all(torches) do
-    if (counter % 30 == 0) then 
-      anim(t.burns, 2)
-    end
+function update_anim_torch(torch)
+  if (counter % 30 == 0) then 
+    anim(torch.base_anim, 2)
   end
 end
 

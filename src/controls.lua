@@ -47,13 +47,13 @@ function horizontal_controls(p)
   end
 
   if h_col then
-    p.walk.f = p.walk.fix
+    p.base_anim.f = p.base_anim.fix
   else
     if no_horizontal_input() then
-      p.walk.f = p.walk.fix
+      p.base_anim.f = p.base_anim.fix
     else
       p.x += p.dx
-      anim(p.walk, 0.35)
+      anim(p.base_anim, 0.35)
     end
   end
 end
