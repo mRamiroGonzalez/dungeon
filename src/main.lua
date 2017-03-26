@@ -34,11 +34,13 @@ function _update()
   for e in all(entities) do
     if e.entity_type == 'bad' then
       update_gravity(e)
-      walk_endless(e)
+      if e.ai == 'endless' then
+        walk_endless(e)
+      elseif e.ai == 'follow' then
+        follow_player(e, p)
+      end
     elseif e.entity_type == 'torch' then
       update_anim_torch(e)
     end
   end
-  --follow_player(bad, p)
-  
 end
