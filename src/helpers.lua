@@ -1,6 +1,7 @@
 
 function print_debug()
-  -- print(bad2.facing, 5,5,0)
+  print('mem:'..stat(0), 0, 0, 8)
+  print('cpu:'..stat(1), 0, 8, 8)
 end
 
 function sp_to_rect(e)

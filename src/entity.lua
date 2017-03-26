@@ -15,6 +15,22 @@ function init_entity(start_x, start_y, speed, start_sprite, length_sprites)
   }
 end
 
+function init_torch(x, y, start_sprite, length_sprites)
+  return{
+    x = x*8,
+    y = y*8,
+    burns={f=start_sprite, st=start_sprite, sz=start_sprite+length_sprites}
+  }
+end
+
+function update_anim_torches(torches)
+  for t in all(torches) do
+    if (counter % 30 == 0) then 
+      anim(t.burns, 2)
+    end
+  end
+end
+
 function update_gravity(e)
   if (e.dy < e.v_speed) then
     e.dy += e.gravity
