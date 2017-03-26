@@ -4,8 +4,9 @@ function load_entities(loaded_map, entities)
       if(mget(xi, yi) == 128) then
         add(entities, init_entity(xi*8, yi*8, 1, 48, 4,'bad'))
         mset(xi, yi, 80)
-      elseif(mget(xi, yi) == 129) then
-       -- mset(x, y, 2)
+      elseif(mget(xi, yi) == 137) then
+        add(entities, init_entity(xi*8, yi*8, 0, 74, 2,'torch'))
+        mset(xi, yi, 80)
       end
     end
   end

@@ -3,10 +3,6 @@ function _init()
   entities = {}
 
   p = init_entity(76, 64, 3, 16, 6)
-
-  add(entities, init_entity(7*8, 3*8, 0, 74, 2,'torch'))
-  add(entities, init_entity(11*8, 9*8, 0, 74, 2,'torch'))
-  add(entities, init_entity(3*8, 9*8, 0, 74, 2,'torch'))
 end
 
 function _draw()
