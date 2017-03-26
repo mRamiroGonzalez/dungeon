@@ -1,8 +1,8 @@
 function _init()
   counter = 0
-  
+
   p = init_entity(76, 64, 3, 16, 6)
-  bad = init_entity(30, 30, 1, 48, 5)
+  bad = init_entity(30, 30, 1, 48, 4)
   bad2 = init_entity(30, 64, 1, 32, 4)
 
   torches = {}
