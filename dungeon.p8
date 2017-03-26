@@ -239,6 +239,7 @@ function no_horizontal_input()
 return not (btn(0) or btn(1))
 end
 function load_entities(loaded_map, entities)
+if (counter % 30 == 0) then
 for xi = loaded_map.x1, loaded_map.x2, 1 do
 for yi = loaded_map.y1, loaded_map.y2, 1 do
 if(mget(xi, yi) == 128) then
@@ -250,6 +251,7 @@ mset(xi, yi, 80)
 elseif(mget(xi, yi) == 129) then
 add(entities, init_entity(xi*8, yi*8, 1, 48, 4,'bad','follow'))
 mset(xi, yi, 80)
+end
 end
 end
 end
@@ -692,6 +694,12 @@ __music__
 00 41424344
 00 41424344
 00 41424344
+
+
+
+
+
+
 
 
 

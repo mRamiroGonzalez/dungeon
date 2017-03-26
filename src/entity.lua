@@ -1,15 +1,17 @@
 function load_entities(loaded_map, entities)
-  for xi = loaded_map.x1, loaded_map.x2, 1 do
-    for yi = loaded_map.y1, loaded_map.y2, 1 do
-      if(mget(xi, yi) == 128) then
-        add(entities, init_entity(xi*8, yi*8, 1, 48, 4,'bad','endless'))
-        mset(xi, yi, 80)
-      elseif(mget(xi, yi) == 137) then
-        add(entities, init_entity(xi*8, yi*8, 0, 74, 2,'torch','dumb'))
-        mset(xi, yi, 80)
-      elseif(mget(xi, yi) == 129) then
-        add(entities, init_entity(xi*8, yi*8, 1, 48, 4,'bad','follow'))
-        mset(xi, yi, 80)
+  if (counter % 30 == 0) then
+    for xi = loaded_map.x1, loaded_map.x2, 1 do
+      for yi = loaded_map.y1, loaded_map.y2, 1 do
+        if(mget(xi, yi) == 128) then
+          add(entities, init_entity(xi*8, yi*8, 1, 48, 4,'bad','endless'))
+          mset(xi, yi, 80)
+        elseif(mget(xi, yi) == 137) then
+          add(entities, init_entity(xi*8, yi*8, 0, 74, 2,'torch','dumb'))
+          mset(xi, yi, 80)
+        elseif(mget(xi, yi) == 129) then
+          add(entities, init_entity(xi*8, yi*8, 1, 48, 4,'bad','follow'))
+          mset(xi, yi, 80)
+        end
       end
     end
   end
