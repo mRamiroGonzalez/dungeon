@@ -11,6 +11,9 @@ function load_entities(loaded_map, entities)
         elseif(mget(xi, yi) == 129) then
           add(entities, init_entity(xi*8, yi*8, 1, 48, 4,'bad','follow'))
           mset(xi, yi, 80)
+        elseif(mget(xi, yi) == 136) then
+          add(entities, init_entity(xi*8, yi*8, 0, 124, 1,'torch_small','dumb'))
+          mset(xi, yi, 80)
         end
       end
     end
@@ -35,12 +38,6 @@ function init_entity(start_x, start_y, speed, start_sprite, length_sprites, t, a
     gravity = 1,
     base_anim={f=start_sprite, st=start_sprite, sz=start_sprite+length_sprites, fix=start_sprite}
   }
-end
-
-function update_anim_torch(torch)
-  if (counter % 30 == 0) then 
-    anim(torch.base_anim, 2)
-  end
 end
 
 function update_gravity(e)

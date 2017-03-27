@@ -2,7 +2,7 @@ function _init()
   counter = 0
   entities = {}
 
-  p = init_entity(76, 64, 3, 16, 6)
+  p = init_entity(76, 64, 2, 16, 6)
 end
 
 function _draw()
@@ -12,6 +12,8 @@ function _draw()
   for e in all(entities) do
     if (e.entity_type == 'torch') then
       spr(e.base_anim.f, e.x, e.y, 2, 2)
+    elseif (e.entity_type == 'torch_small') then
+      spr(e.base_anim.f, e.x, e.y, 1, 1)
     elseif e.entity_type == 'bad' then
       spr(e.base_anim.f, e.x, e.y, 1, 1, (e.facing == 0))
     end
@@ -40,7 +42,9 @@ function _update()
         follow_player(e, p)
       end
     elseif e.entity_type == 'torch' then
-      update_anim_torch(e)
+      update_anim_torch(e, 2)
+    elseif e.entity_type == 'torch_small' then
+      update_anim_torch(e, 1)
     end
   end
 end
